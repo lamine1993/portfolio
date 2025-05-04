@@ -159,14 +159,14 @@ export default function Home() {
                 <div className="row align-items-center">
                   <div className="col-lg-6 animate-fadeInRight">
                     <div className="profile-image-container">
-                      <Image
+        <Image
                         src="/profile.png"
                         alt="Photo de profil"
                         width={400}
                         height={400}
                         className="img-fluid rounded-circle"
-                        priority
-                      />
+          priority
+        />
                     </div>
                   </div>
                   <div className="col-lg-6 animate-fadeInLeft">
@@ -215,7 +215,7 @@ export default function Home() {
               <div key={project.id} className={`col-md-6 col-lg-4 animate-fadeInUp delay-${(index + 1) * 100}`}>
                 <div className="card h-100">
                   <div className="position-relative" style={{ height: '200px' }}>
-                    <Image
+            <Image
                       src={project.image}
                       alt={project.title}
                       fill
@@ -357,7 +357,7 @@ export default function Home() {
               <div key={client.id} className={`col-6 col-md-3 text-center animate-fadeInUp delay-${(index + 1) * 100}`}>
                 <div className="client-card p-4">
                   <div className="client-logo mb-3" style={{ height: '80px', position: 'relative' }}>
-                    <Image
+          <Image
                       src={client.logo}
                       alt={client.name}
                       fill
@@ -483,7 +483,7 @@ export default function Home() {
               </div>
             </div>
           </div>
-        </div>
+    </div>
       </section>
     </main>
   );
