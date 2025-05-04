@@ -407,3 +407,46 @@ footer {
 .contact-form .form-control::placeholder {
   color: rgba(255, 255, 255, 0.5);
 }
+
+/* Styles pour le carousel tactile */
+.touch-carousel {
+  touch-action: pan-y pinch-zoom;
+  -webkit-touch-callout: none;
+  -webkit-user-select: none;
+  -khtml-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
+}
+
+.touch-carousel .carousel-inner {
+  overflow: hidden;
+}
+
+.touch-carousel .carousel-item {
+  transition: transform 0.6s ease-in-out;
+}
+
+.touch-carousel .carousel-control-prev,
+.touch-carousel .carousel-control-next {
+  width: 15%;
+  opacity: 0.5;
+  transition: opacity 0.15s ease;
+}
+
+.touch-carousel .carousel-control-prev:hover,
+.touch-carousel .carousel-control-next:hover {
+  opacity: 0.9;
+}
+
+/* Amélioration de l'expérience tactile sur mobile */
+@media (max-width: 767.98px) {
+  .touch-carousel .carousel-indicators {
+    margin-bottom: 0.5rem;
+  }
+  
+  .touch-carousel .carousel-control-prev,
+  .touch-carousel .carousel-control-next {
+    width: 10%;
+  }
+}

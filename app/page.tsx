@@ -138,9 +138,9 @@ export default function Home() {
             <div className="carousel-item active">
               <div className="container">
                 <div className="row justify-content-center text-center">
-                  <div className="col-lg-8 animate-fadeInUp">
-                    <h1 className="hero-title">Bienvenue sur mon Portfolio</h1>
-                    <p className="hero-subtitle lead text-white mb-4">
+                  <div className="col-12 col-md-10 col-lg-8 animate-fadeInUp">
+                    <h1 className="hero-title display-4">Bienvenue sur mon Portfolio</h1>
+                    <p className="hero-subtitle lead text-white mb-4 px-2 px-md-0">
                       Je suis un développeur passionné par la création d'applications web modernes et performantes.
                       Mon expertise couvre les technologies front-end et back-end, avec une attention particulière
                       à l'expérience utilisateur et à la qualité du code.
@@ -157,20 +157,20 @@ export default function Home() {
             <div className="carousel-item">
               <div className="container">
                 <div className="row align-items-center">
-                  <div className="col-lg-6 animate-fadeInRight">
-                    <div className="profile-image-container">
-        <Image
+                  <div className="col-12 col-md-6 animate-fadeInRight">
+                    <div className="profile-image-container text-center mb-4 mb-md-0">
+                      <Image
                         src="/profile.png"
                         alt="Photo de profil"
-                        width={400}
-                        height={400}
+                        width={300}
+                        height={300}
                         className="img-fluid rounded-circle"
-          priority
-        />
+                        priority
+                      />
                     </div>
                   </div>
-                  <div className="col-lg-6 animate-fadeInLeft">
-                    <div className="profile-summary">
+                  <div className="col-12 col-md-6 animate-fadeInLeft">
+                    <div className="profile-summary text-center text-md-start">
                       <h2 className="hero-title mb-4">Mon Profil</h2>
                       <div className="competence-summary">
                         <div className="mb-3">
@@ -209,35 +209,94 @@ export default function Home() {
       {/* Section Projets */}
       <section id="projets" className="section">
         <div className="container">
-          <h2 className="section-title animate-fadeInUp">Mes Projets</h2>
-          <div className="row g-4">
-            {projects.map((project, index) => (
-              <div key={project.id} className={`col-md-6 col-lg-4 animate-fadeInUp delay-${(index + 1) * 100}`}>
-                <div className="card h-100">
-                  <div className="position-relative" style={{ height: '200px' }}>
-            <Image
-                      src={project.image}
-                      alt={project.title}
-                      fill
-                      sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
-                      className="card-img-top"
-                      priority={project.id === 1}
-                    />
-                  </div>
-                  <div className="card-body">
-                    <h3 className="card-title h5">{project.title}</h3>
-                    <p className="card-text text-muted">{project.description}</p>
-                    <div className="d-flex flex-wrap gap-2">
-                      {project.technologies.map((tech, techIndex) => (
-                        <span key={techIndex} className="badge bg-light text-dark">
-                          {tech}
-                        </span>
-                      ))}
+          <h2 className="section-title animate-fadeInUp text-center mb-5">Mes Projets</h2>
+          {/* Version Desktop - Grille */}
+          <div className="d-none d-md-block">
+            <div className="row g-4">
+              {projects.map((project) => (
+                <div key={project.id} className="col-md-4">
+                  <div className="card h-100 border-0 shadow-lg">
+                    <div className="position-relative" style={{ height: '250px' }}>
+                      <Image
+                        src={project.image}
+                        alt={project.title}
+                        fill
+                        sizes="(max-width: 992px) 50vw, 33vw"
+                        className="card-img-top object-fit-cover"
+                        priority={project.id === 1}
+                      />
+                    </div>
+                    <div className="card-body p-4">
+                      <h3 className="card-title h4 mb-3">{project.title}</h3>
+                      <p className="card-text text-muted mb-4">{project.description}</p>
+                      <div className="d-flex flex-wrap gap-2">
+                        {project.technologies.map((tech, techIndex) => (
+                          <span key={techIndex} className="badge bg-primary text-white">
+                            {tech}
+                          </span>
+                        ))}
+                      </div>
                     </div>
                   </div>
                 </div>
+              ))}
+            </div>
+          </div>
+
+          {/* Version Mobile - Carousel */}
+          <div className="d-md-none">
+            <div id="projectsCarousel" className="carousel slide touch-carousel" data-bs-ride="carousel" data-bs-touch="true">
+              <div className="carousel-indicators">
+                {projects.map((_, index) => (
+                  <button
+                    key={index}
+                    type="button"
+                    data-bs-target="#projectsCarousel"
+                    data-bs-slide-to={index}
+                    className={index === 0 ? "active" : ""}
+                    aria-current={index === 0 ? "true" : "false"}
+                    aria-label={`Slide ${index + 1}`}
+                  ></button>
+                ))}
               </div>
-            ))}
+              <div className="carousel-inner">
+                {projects.map((project, index) => (
+                  <div key={project.id} className={`carousel-item ${index === 0 ? "active" : ""}`}>
+                    <div className="card h-100 border-0 shadow-lg">
+                      <div className="position-relative" style={{ height: '250px' }}>
+                        <Image
+                          src={project.image}
+                          alt={project.title}
+                          fill
+                          sizes="100vw"
+                          className="card-img-top object-fit-cover"
+                          priority={index === 0}
+                        />
+                      </div>
+                      <div className="card-body p-4">
+                        <h3 className="card-title h4 mb-3">{project.title}</h3>
+                        <p className="card-text text-muted mb-4">{project.description}</p>
+                        <div className="d-flex flex-wrap gap-2">
+                          {project.technologies.map((tech, techIndex) => (
+                            <span key={techIndex} className="badge bg-primary text-white">
+                              {tech}
+                            </span>
+                          ))}
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                ))}
+              </div>
+              <button className="carousel-control-prev" type="button" data-bs-target="#projectsCarousel" data-bs-slide="prev">
+                <span className="carousel-control-prev-icon" aria-hidden="true"></span>
+                <span className="visually-hidden">Précédent</span>
+              </button>
+              <button className="carousel-control-next" type="button" data-bs-target="#projectsCarousel" data-bs-slide="next">
+                <span className="carousel-control-next-icon" aria-hidden="true"></span>
+                <span className="visually-hidden">Suivant</span>
+              </button>
+            </div>
           </div>
         </div>
       </section>
@@ -245,40 +304,97 @@ export default function Home() {
       {/* Section Services */}
       <section id="services" className="section bg-light">
         <div className="container">
-          <h2 className="section-title animate-fadeInUp">Mes Services</h2>
-          <div className="row g-4">
-            <div className="col-md-4 animate-fadeInUp">
-              <div className="card h-100">
-                <div className="card-body text-center">
-                  <i className="bi bi-code-slash display-4 text-primary mb-3"></i>
-                  <h3 className="card-title h5">Développement Web</h3>
-                  <p className="card-text">
-                    Création de sites web modernes et responsifs avec les dernières technologies front-end et back-end.
-                  </p>
+          <h2 className="section-title animate-fadeInUp text-center mb-5">Mes Services</h2>
+          {/* Version Desktop - Grille */}
+          <div className="d-none d-md-block">
+            <div className="row g-4">
+              <div className="col-md-4">
+                <div className="card h-100 border-0 shadow-lg">
+                  <div className="card-body text-center p-4">
+                    <i className="bi bi-code-slash display-1 text-primary mb-4"></i>
+                    <h3 className="card-title h3 mb-4">Développement Web</h3>
+                    <p className="card-text lead">
+                      Création de sites web modernes et responsifs avec les dernières technologies front-end et back-end.
+                    </p>
+                  </div>
+                </div>
+              </div>
+              <div className="col-md-4">
+                <div className="card h-100 border-0 shadow-lg">
+                  <div className="card-body text-center p-4">
+                    <i className="bi bi-phone display-1 text-primary mb-4"></i>
+                    <h3 className="card-title h3 mb-4">Développement Mobile</h3>
+                    <p className="card-text lead">
+                      Développement d'applications mobiles cross-platform avec React Native et Ionic.
+                    </p>
+                  </div>
+                </div>
+              </div>
+              <div className="col-md-4">
+                <div className="card h-100 border-0 shadow-lg">
+                  <div className="card-body text-center p-4">
+                    <i className="bi bi-gear display-1 text-primary mb-4"></i>
+                    <h3 className="card-title h3 mb-4">Maintenance & Support</h3>
+                    <p className="card-text lead">
+                      Maintenance continue, optimisation et support technique pour vos applications existantes.
+                    </p>
+                  </div>
                 </div>
               </div>
             </div>
-            <div className="col-md-4 animate-fadeInUp delay-100">
-              <div className="card h-100">
-                <div className="card-body text-center">
-                  <i className="bi bi-phone display-4 text-primary mb-3"></i>
-                  <h3 className="card-title h5">Développement Mobile</h3>
-                  <p className="card-text">
-                    Développement d'applications mobiles cross-platform avec React Native et Ionic.
-                  </p>
+          </div>
+
+          {/* Version Mobile - Carousel */}
+          <div className="d-md-none">
+            <div id="servicesCarousel" className="carousel slide touch-carousel" data-bs-ride="carousel" data-bs-touch="true">
+              <div className="carousel-indicators">
+                <button type="button" data-bs-target="#servicesCarousel" data-bs-slide-to="0" className="active" aria-current="true" aria-label="Slide 1"></button>
+                <button type="button" data-bs-target="#servicesCarousel" data-bs-slide-to="1" aria-label="Slide 2"></button>
+                <button type="button" data-bs-target="#servicesCarousel" data-bs-slide-to="2" aria-label="Slide 3"></button>
+              </div>
+              <div className="carousel-inner">
+                <div className="carousel-item active">
+                  <div className="card h-100 border-0 shadow-lg">
+                    <div className="card-body text-center p-4">
+                      <i className="bi bi-code-slash display-1 text-primary mb-4"></i>
+                      <h3 className="card-title h3 mb-4">Développement Web</h3>
+                      <p className="card-text lead">
+                        Création de sites web modernes et responsifs avec les dernières technologies front-end et back-end.
+                      </p>
+                    </div>
+                  </div>
+                </div>
+                <div className="carousel-item">
+                  <div className="card h-100 border-0 shadow-lg">
+                    <div className="card-body text-center p-4">
+                      <i className="bi bi-phone display-1 text-primary mb-4"></i>
+                      <h3 className="card-title h3 mb-4">Développement Mobile</h3>
+                      <p className="card-text lead">
+                        Développement d'applications mobiles cross-platform avec React Native et Ionic.
+                      </p>
+                    </div>
+                  </div>
+                </div>
+                <div className="carousel-item">
+                  <div className="card h-100 border-0 shadow-lg">
+                    <div className="card-body text-center p-4">
+                      <i className="bi bi-gear display-1 text-primary mb-4"></i>
+                      <h3 className="card-title h3 mb-4">Maintenance & Support</h3>
+                      <p className="card-text lead">
+                        Maintenance continue, optimisation et support technique pour vos applications existantes.
+                      </p>
+                    </div>
+                  </div>
                 </div>
               </div>
-            </div>
-            <div className="col-md-4 animate-fadeInUp delay-200">
-              <div className="card h-100">
-                <div className="card-body text-center">
-                  <i className="bi bi-gear display-4 text-primary mb-3"></i>
-                  <h3 className="card-title h5">Maintenance & Support</h3>
-                  <p className="card-text">
-                    Maintenance continue, optimisation et support technique pour vos applications existantes.
-                  </p>
-                </div>
-              </div>
+              <button className="carousel-control-prev" type="button" data-bs-target="#servicesCarousel" data-bs-slide="prev">
+                <span className="carousel-control-prev-icon" aria-hidden="true"></span>
+                <span className="visually-hidden">Précédent</span>
+              </button>
+              <button className="carousel-control-next" type="button" data-bs-target="#servicesCarousel" data-bs-slide="next">
+                <span className="carousel-control-next-icon" aria-hidden="true"></span>
+                <span className="visually-hidden">Suivant</span>
+              </button>
             </div>
           </div>
         </div>
@@ -288,26 +404,77 @@ export default function Home() {
       <section id="experience" className="section">
         <div className="container">
           <h2 className="section-title animate-fadeInUp">Expérience Professionnelle</h2>
-          <div className="row">
-            {experiences.map((exp, index) => (
-              <div key={exp.id} className={`col-lg-6 mb-4 animate-fadeInUp delay-${(index + 1) * 100}`}>
-                <div className="card h-100 experience-card">
-                  <div className="card-body">
-                    <h3 className="card-title h5">{exp.title}</h3>
-                    <h4 className="h6 text-primary">{exp.company}</h4>
-                    <p className="text-muted mb-2">{exp.period}</p>
-                    <p className="card-text">{exp.description}</p>
-                    <div className="d-flex flex-wrap gap-2">
-                      {exp.technologies.map((tech, techIndex) => (
-                        <span key={techIndex} className="badge bg-light text-dark">
-                          {tech}
-                        </span>
-                      ))}
+          {/* Version Desktop - Grille */}
+          <div className="d-none d-md-block">
+            <div className="row">
+              {experiences.map((exp, index) => (
+                <div key={exp.id} className={`col-lg-6 mb-4 animate-fadeInUp delay-${(index + 1) * 100}`}>
+                  <div className="card h-100 experience-card">
+                    <div className="card-body">
+                      <h3 className="card-title h5">{exp.title}</h3>
+                      <h4 className="h6 text-primary">{exp.company}</h4>
+                      <p className="text-muted mb-2">{exp.period}</p>
+                      <p className="card-text">{exp.description}</p>
+                      <div className="d-flex flex-wrap gap-2">
+                        {exp.technologies.map((tech, techIndex) => (
+                          <span key={techIndex} className="badge bg-light text-dark">
+                            {tech}
+                          </span>
+                        ))}
+                      </div>
                     </div>
                   </div>
                 </div>
+              ))}
+            </div>
+          </div>
+
+          {/* Version Mobile - Carousel */}
+          <div className="d-md-none">
+            <div id="experienceCarousel" className="carousel slide touch-carousel" data-bs-ride="carousel" data-bs-touch="true">
+              <div className="carousel-indicators">
+                {experiences.map((_, index) => (
+                  <button
+                    key={index}
+                    type="button"
+                    data-bs-target="#experienceCarousel"
+                    data-bs-slide-to={index}
+                    className={index === 0 ? "active" : ""}
+                    aria-current={index === 0 ? "true" : "false"}
+                    aria-label={`Slide ${index + 1}`}
+                  ></button>
+                ))}
               </div>
-            ))}
+              <div className="carousel-inner">
+                {experiences.map((exp, index) => (
+                  <div key={exp.id} className={`carousel-item ${index === 0 ? "active" : ""}`}>
+                    <div className="card h-100 experience-card">
+                      <div className="card-body">
+                        <h3 className="card-title h5">{exp.title}</h3>
+                        <h4 className="h6 text-primary">{exp.company}</h4>
+                        <p className="text-muted mb-2">{exp.period}</p>
+                        <p className="card-text">{exp.description}</p>
+                        <div className="d-flex flex-wrap gap-2">
+                          {exp.technologies.map((tech, techIndex) => (
+                            <span key={techIndex} className="badge bg-light text-dark">
+                              {tech}
+                            </span>
+                          ))}
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                ))}
+              </div>
+              <button className="carousel-control-prev" type="button" data-bs-target="#experienceCarousel" data-bs-slide="prev">
+                <span className="carousel-control-prev-icon" aria-hidden="true"></span>
+                <span className="visually-hidden">Précédent</span>
+              </button>
+              <button className="carousel-control-next" type="button" data-bs-target="#experienceCarousel" data-bs-slide="next">
+                <span className="carousel-control-next-icon" aria-hidden="true"></span>
+                <span className="visually-hidden">Suivant</span>
+              </button>
+            </div>
           </div>
         </div>
       </section>
@@ -316,34 +483,93 @@ export default function Home() {
       <section id="competences" className="section bg-light">
         <div className="container">
           <h2 className="section-title animate-fadeInUp">Compétences</h2>
-          <div className="row">
-            {competences.map((category, index) => (
-              <div key={index} className={`col-md-4 mb-4 animate-fadeInUp delay-${(index + 1) * 100}`}>
-                <div className="card h-100">
-                  <div className="card-body">
-                    <h3 className="card-title h5 mb-4">{category.category}</h3>
-                    {category.skills.map((skill, skillIndex) => (
-                      <div key={skillIndex} className={`mb-3 animate-fadeInRight delay-${skillIndex * 50}`}>
-                        <div className="d-flex justify-content-between mb-1">
-                          <span className="skill-name">{skill.name}</span>
-                          <span className="skill-level">{skill.level}%</span>
+          {/* Version Desktop - Grille */}
+          <div className="d-none d-md-block">
+            <div className="row">
+              {competences.map((category, index) => (
+                <div key={index} className={`col-md-4 mb-4 animate-fadeInUp delay-${(index + 1) * 100}`}>
+                  <div className="card h-100">
+                    <div className="card-body">
+                      <h3 className="card-title h5 mb-4">{category.category}</h3>
+                      {category.skills.map((skill, skillIndex) => (
+                        <div key={skillIndex} className={`mb-3 animate-fadeInRight delay-${skillIndex * 50}`}>
+                          <div className="d-flex justify-content-between mb-1">
+                            <span className="skill-name">{skill.name}</span>
+                            <span className="skill-level">{skill.level}%</span>
+                          </div>
+                          <div className="progress">
+                            <div 
+                              className="progress-bar" 
+                              role="progressbar" 
+                              style={{ width: `${skill.level}%` }}
+                              aria-valuenow={skill.level}
+                              aria-valuemin={0}
+                              aria-valuemax={100}
+                            ></div>
+                          </div>
                         </div>
-                        <div className="progress">
-                          <div 
-                            className="progress-bar" 
-                            role="progressbar" 
-                            style={{ width: `${skill.level}%` }}
-                            aria-valuenow={skill.level}
-                            aria-valuemin={0}
-                            aria-valuemax={100}
-                          ></div>
-                        </div>
-                      </div>
-                    ))}
+                      ))}
+                    </div>
                   </div>
                 </div>
+              ))}
+            </div>
+          </div>
+
+          {/* Version Mobile - Carousel */}
+          <div className="d-md-none">
+            <div id="competencesCarousel" className="carousel slide touch-carousel" data-bs-ride="carousel" data-bs-touch="true">
+              <div className="carousel-indicators">
+                {competences.map((_, index) => (
+                  <button
+                    key={index}
+                    type="button"
+                    data-bs-target="#competencesCarousel"
+                    data-bs-slide-to={index}
+                    className={index === 0 ? "active" : ""}
+                    aria-current={index === 0 ? "true" : "false"}
+                    aria-label={`Slide ${index + 1}`}
+                  ></button>
+                ))}
               </div>
-            ))}
+              <div className="carousel-inner">
+                {competences.map((category, index) => (
+                  <div key={index} className={`carousel-item ${index === 0 ? "active" : ""}`}>
+                    <div className="card h-100">
+                      <div className="card-body">
+                        <h3 className="card-title h5 mb-4">{category.category}</h3>
+                        {category.skills.map((skill, skillIndex) => (
+                          <div key={skillIndex} className={`mb-3 animate-fadeInRight delay-${skillIndex * 50}`}>
+                            <div className="d-flex justify-content-between mb-1">
+                              <span className="skill-name">{skill.name}</span>
+                              <span className="skill-level">{skill.level}%</span>
+                            </div>
+                            <div className="progress">
+                              <div 
+                                className="progress-bar" 
+                                role="progressbar" 
+                                style={{ width: `${skill.level}%` }}
+                                aria-valuenow={skill.level}
+                                aria-valuemin={0}
+                                aria-valuemax={100}
+                              ></div>
+                            </div>
+                          </div>
+                        ))}
+                      </div>
+                    </div>
+                  </div>
+                ))}
+              </div>
+              <button className="carousel-control-prev" type="button" data-bs-target="#competencesCarousel" data-bs-slide="prev">
+                <span className="carousel-control-prev-icon" aria-hidden="true"></span>
+                <span className="visually-hidden">Précédent</span>
+              </button>
+              <button className="carousel-control-next" type="button" data-bs-target="#competencesCarousel" data-bs-slide="next">
+                <span className="carousel-control-next-icon" aria-hidden="true"></span>
+                <span className="visually-hidden">Suivant</span>
+              </button>
+            </div>
           </div>
         </div>
       </section>
@@ -381,13 +607,50 @@ export default function Home() {
           <p className="text-center text-muted mb-5 animate-fadeInUp delay-100">
             Découvrez mes articles sur le développement web, les bonnes pratiques et les dernières technologies.
           </p>
-          <div className="row">
-            {blogPosts.map((post, index) => (
-              <BlogPost
-                key={post.id}
-                {...post}
-              />
-            ))}
+          {/* Version Desktop - Grille */}
+          <div className="d-none d-md-block">
+            <div className="row">
+              {blogPosts.map((post, index) => (
+                <BlogPost
+                  key={post.id}
+                  {...post}
+                />
+              ))}
+            </div>
+          </div>
+
+          {/* Version Mobile - Carousel */}
+          <div className="d-md-none">
+            <div id="blogCarousel" className="carousel slide touch-carousel" data-bs-ride="carousel" data-bs-touch="true">
+              <div className="carousel-indicators">
+                {blogPosts.map((_, index) => (
+                  <button
+                    key={index}
+                    type="button"
+                    data-bs-target="#blogCarousel"
+                    data-bs-slide-to={index}
+                    className={index === 0 ? "active" : ""}
+                    aria-current={index === 0 ? "true" : "false"}
+                    aria-label={`Slide ${index + 1}`}
+                  ></button>
+                ))}
+              </div>
+              <div className="carousel-inner">
+                {blogPosts.map((post, index) => (
+                  <div key={post.id} className={`carousel-item ${index === 0 ? "active" : ""}`}>
+                    <BlogPost {...post} />
+                  </div>
+                ))}
+              </div>
+              <button className="carousel-control-prev" type="button" data-bs-target="#blogCarousel" data-bs-slide="prev">
+                <span className="carousel-control-prev-icon" aria-hidden="true"></span>
+                <span className="visually-hidden">Précédent</span>
+              </button>
+              <button className="carousel-control-next" type="button" data-bs-target="#blogCarousel" data-bs-slide="next">
+                <span className="carousel-control-next-icon" aria-hidden="true"></span>
+                <span className="visually-hidden">Suivant</span>
+              </button>
+            </div>
           </div>
           <div className="text-center mt-5 animate-fadeInUp delay-200">
             <a href="/blog" className="btn btn-primary">

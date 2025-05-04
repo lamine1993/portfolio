@@ -19,8 +19,10 @@ export default function BlogPost({ id, title, excerpt, date, image, category }: 
             src={image}
             alt={title}
             fill
+            sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
             className="card-img-top"
             style={{ objectFit: 'cover' }}
+            priority={id === 1}
           />
           <div className="category-badge">
             {category}
