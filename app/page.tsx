@@ -1,5 +1,6 @@
 import Image from "next/image";
 import BlogPost from "./components/BlogPost";
+import Link from "next/link";
 
 export default function Home() {
   const projects = [

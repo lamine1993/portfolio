@@ -3,6 +3,8 @@ import { Inter } from "next/font/google";
 import "./globals.css";
 import "bootstrap/dist/css/bootstrap.min.css";
 import Script from 'next/script';
+import Link from 'next/link';
+import Image from 'next/image';
 
 const inter = Inter({ subsets: ["latin"] });
 
@@ -23,9 +25,19 @@ export default function RootLayout({
         <meta name="viewport" content="width=device-width, initial-scale=1" />
       </head>
       <body className={inter.className}>
-        <nav className="navbar navbar-expand-lg navbar-light bg-light">
+        <nav className="navbar navbar-expand-lg navbar-light bg-light fixed-top">
           <div className="container">
-            <a className="navbar-brand" href="/">Mon Portfolio</a>
+            <Link href="/" className="navbar-brand d-flex align-items-center">
+              <Image
+                src="/logo.png"
+                alt="Logo"
+                width={40}
+                height={40}
+                className="me-2"
+                priority
+              />
+              <span>Mon Portfolio</span>
+            </Link>
             <button 
               className="navbar-toggler" 
               type="button" 
