@@ -142,7 +142,7 @@ export default function Home() {
                   <div className="col-12 col-md-10 col-lg-8 animate-fadeInUp">
                     <h1 className="hero-title display-4">Bienvenue sur mon Portfolio</h1>
                     <p className="hero-subtitle lead text-white mb-4 px-2 px-md-0">
-                      Je suis un développeur passionné par la création d'applications web modernes et performantes.
+                      Je suis un développeur passionné par la création d'applications web/mobile modernes et performantes.
                       Mon expertise couvre les technologies front-end et back-end, avec une attention particulière
                       à l'expérience utilisateur et à la qualité du code.
                     </p>
