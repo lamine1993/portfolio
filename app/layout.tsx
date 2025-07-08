@@ -5,6 +5,8 @@ import "bootstrap/dist/css/bootstrap.min.css";
 import Script from 'next/script';
 import Link from 'next/link';
 import Image from 'next/image';
+import { AuthProvider } from './components/AuthProvider';
+import Navigation from './components/Navigation';
 
 const inter = Inter({ subsets: ["latin"] });
 
@@ -25,64 +27,18 @@ export default function RootLayout({
         <meta name="viewport" content="width=device-width, initial-scale=1" />
       </head>
       <body className={inter.className}>
-        <nav className="navbar navbar-expand-lg navbar-light bg-light fixed-top">
-          <div className="container">
-            <Link href="/" className="navbar-brand d-flex align-items-center">
-              <Image
-                src="/logo.png"
-                alt="Logo"
-                width={40}
-                height={40}
-                className="me-2"
-                priority
-              />
-              <span>Mon Portfolio</span>
-            </Link>
-            <button 
-              className="navbar-toggler" 
-              type="button" 
-              data-bs-toggle="collapse" 
-              data-bs-target="#navbarNav" 
-              aria-controls="navbarNav" 
-              aria-expanded="false" 
-              aria-label="Toggle navigation"
-            >
-              <span className="navbar-toggler-icon"></span>
-            </button>
-            <div className="collapse navbar-collapse" id="navbarNav">
-              <ul className="navbar-nav ms-auto">
-                <li className="nav-item">
-                  <a className="nav-link" href="#projets">Projets</a>
-                </li>
-                <li className="nav-item">
-                  <a className="nav-link" href="#experience">Expérience</a>
-                </li>
-                <li className="nav-item">
-                  <a className="nav-link" href="#competences">Compétences</a>
-                </li>
-                {/*<li className="nav-item">
-                  <a className="nav-link" href="#clients">Clients</a>
-                </li>*/}
-                <li className="nav-item">
-                  <a className="nav-link" href="#blog">Blog</a>
-                </li>
-                <li className="nav-item">
-                  <a className="nav-link" href="#contact">Contact</a>
-                </li>
-              </ul>
+        <AuthProvider>
+          <Navigation />
+          <main className="min-h-screen">
+            {children}
+          </main>
+          
+          <footer className="bg-dark text-white py-4">
+            <div className="container text-center">
+              <p className="mb-0">© {new Date().getFullYear()} Mon Portfolio. Tous droits réservés.</p>
             </div>
-          </div>
-        </nav>
-        
-        <main className="min-h-screen">
-          {children}
-        </main>
-        
-        <footer className="bg-dark text-white py-4">
-          <div className="container text-center">
-            <p className="mb-0">© {new Date().getFullYear()} Mon Portfolio. Tous droits réservés.</p>
-          </div>
-        </footer>
+          </footer>
+        </AuthProvider>
         <Script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js" />
       </body>
     </html>

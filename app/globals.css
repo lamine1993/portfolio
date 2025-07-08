@@ -71,6 +71,27 @@
 body {
   font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
   line-height: 1.5;
+  padding-top: 76px; /* Hauteur du header navbar */
+}
+
+/* Correction pour le header fixe */
+body {
+  padding-top: 76px; /* Hauteur du header navbar */
+}
+
+/* Ajustement pour les pages avec conteneur */
+.container {
+  padding-top: 1rem;
+}
+
+/* Ajustement spécifique pour les pages d'administration */
+.admin-page {
+  padding-top: 2rem;
+}
+
+/* Ajustement pour les formulaires */
+.form-container {
+  padding-top: 1rem;
 }
 
 .navbar {
@@ -449,4 +470,118 @@ footer {
   .touch-carousel .carousel-control-next {
     width: 10%;
   }
+}
+
+/* Styles pour le carousel d'expérience */
+#experienceCarousel {
+  margin: 2rem 0;
+}
+
+#experienceCarousel .carousel-item {
+  padding: 1rem;
+}
+
+#experienceCarousel .card {
+  border: none;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  transition: transform 0.3s ease;
+}
+
+#experienceCarousel .card:hover {
+  transform: translateY(-5px);
+}
+
+#experienceCarousel .card-body {
+  padding: 2rem;
+}
+
+#experienceCarousel .card-title {
+  color: #2c3e50;
+  font-weight: 600;
+  margin-bottom: 0.5rem;
+}
+
+#experienceCarousel .card-subtitle {
+  color: #6c757d;
+  font-size: 0.9rem;
+}
+
+#experienceCarousel .card-text {
+  color: #495057;
+  line-height: 1.6;
+}
+
+#experienceCarousel .carousel-control-prev,
+#experienceCarousel .carousel-control-next {
+  width: 5%;
+  opacity: 0.8;
+}
+
+#experienceCarousel .carousel-control-prev-icon,
+#experienceCarousel .carousel-control-next-icon {
+  background-color: rgba(0, 0, 0, 0.5);
+  border-radius: 50%;
+  padding: 1.5rem;
+}
+
+#experienceCarousel .carousel-indicators {
+  margin-bottom: 0;
+}
+
+#experienceCarousel .carousel-indicators button {
+  width: 10px;
+  height: 10px;
+  border-radius: 50%;
+  margin: 0 5px;
+  background-color: #6c757d;
+}
+
+#experienceCarousel .carousel-indicators button.active {
+  background-color: #2c3e50;
+}
+
+/* Styles pour l'administration */
+.hover-row:hover {
+  background-color: #f8f9fa !important;
+  transform: translateY(-1px);
+  box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+  transition: all 0.2s ease;
+}
+
+.controls-section {
+  transition: all 0.3s ease;
+}
+
+.controls-section:hover {
+  box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+}
+
+/* Styles pour les formulaires */
+.form-control:focus {
+  border-color: #0d6efd;
+  box-shadow: 0 0 0 0.2rem rgba(13, 110, 253, 0.25);
+}
+
+.form-select:focus {
+  border-color: #0d6efd;
+  box-shadow: 0 0 0 0.2rem rgba(13, 110, 253, 0.25);
+}
+
+/* Animation pour les boutons */
+.btn {
+  transition: all 0.2s ease;
+}
+
+.btn:hover {
+  transform: translateY(-1px);
+}
+
+/* Styles pour les progress bars */
+.progress {
+  border-radius: 10px;
+  overflow: hidden;
+}
+
+.progress-bar {
+  transition: width 0.3s ease;
 }

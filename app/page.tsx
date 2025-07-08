@@ -31,8 +31,16 @@ export default function Home() {
   const experiences = [
     {
       id: 1,
+      title: "Consultant ServiceNow",
+      company: "Yawize",
+      period: "2021 - Présent",
+      description: "Analyse des besoins, conception et développement sur ServiceNow (catalogues, workflows, règles, UI), intégration via API, création d'applications, documentation, projets Agile, formation et collaboration avec les équipes.",
+      technologies: ["ServiceNow", "JavaScript", "Glide API", "REST API", "React", "Node.js", "MongoDB", "TypeScript"]
+    },
+    {
+      id: 1,
       title: "Développeur Full Stack",
-      company: "Entreprise Tech",
+      company: "Freelance",
       period: "2022 - Présent",
       description: "Développement d'applications web et mobiles avec React, Node.js et MongoDB. Gestion de projets et collaboration avec les équipes de design.",
       technologies: ["React", "Node.js", "MongoDB", "TypeScript"]
@@ -40,7 +48,7 @@ export default function Home() {
     {
       id: 2,
       title: "Développeur Front-end",
-      company: "Startup Innovante",
+      company: "Freelance",
       period: "2020 - 2022",
       description: "Création d'interfaces utilisateur modernes et responsives. Optimisation des performances et amélioration de l'expérience utilisateur.",
       technologies: ["React", "JavaScript", "CSS", "HTML"]
@@ -404,21 +412,21 @@ export default function Home() {
       {/* Section Expérience */}
       <section id="experience" className="section">
         <div className="container">
-          <h2 className="section-title animate-fadeInUp">Expérience Professionnelle</h2>
+          <h2 className="section-title animate-fadeInUp text-center mb-5">Expérience Professionnelle</h2>
           {/* Version Desktop - Grille */}
           <div className="d-none d-md-block">
-            <div className="row">
+            <div className="row g-4">
               {experiences.map((exp, index) => (
-                <div key={exp.id} className={`col-lg-6 mb-4 animate-fadeInUp delay-${(index + 1) * 100}`}>
-                  <div className="card h-100 experience-card">
-                    <div className="card-body">
-                      <h3 className="card-title h5">{exp.title}</h3>
-                      <h4 className="h6 text-primary">{exp.company}</h4>
-                      <p className="text-muted mb-2">{exp.period}</p>
-                      <p className="card-text">{exp.description}</p>
+                <div key={exp.id} className="col-md-4">
+                  <div className="card h-100 border-0 shadow-lg">
+                    <div className="card-body p-4">
+                      <h3 className="card-title h4 mb-3">{exp.title}</h3>
+                      <h4 className="h6 text-primary mb-2">{exp.company}</h4>
+                      <p className="text-muted mb-3">{exp.period}</p>
+                      <p className="card-text text-muted mb-4">{exp.description}</p>
                       <div className="d-flex flex-wrap gap-2">
                         {exp.technologies.map((tech, techIndex) => (
-                          <span key={techIndex} className="badge bg-light text-dark">
+                          <span key={techIndex} className="badge bg-primary text-white">
                             {tech}
                           </span>
                         ))}
@@ -449,15 +457,15 @@ export default function Home() {
               <div className="carousel-inner">
                 {experiences.map((exp, index) => (
                   <div key={exp.id} className={`carousel-item ${index === 0 ? "active" : ""}`}>
-                    <div className="card h-100 experience-card">
-                      <div className="card-body">
-                        <h3 className="card-title h5">{exp.title}</h3>
-                        <h4 className="h6 text-primary">{exp.company}</h4>
-                        <p className="text-muted mb-2">{exp.period}</p>
-                        <p className="card-text">{exp.description}</p>
+                    <div className="card h-100 border-0 shadow-lg">
+                      <div className="card-body p-4">
+                        <h3 className="card-title h4 mb-3">{exp.title}</h3>
+                        <h4 className="h6 text-primary mb-2">{exp.company}</h4>
+                        <p className="text-muted mb-3">{exp.period}</p>
+                        <p className="card-text text-muted mb-4">{exp.description}</p>
                         <div className="d-flex flex-wrap gap-2">
                           {exp.technologies.map((tech, techIndex) => (
-                            <span key={techIndex} className="badge bg-light text-dark">
+                            <span key={techIndex} className="badge bg-primary text-white">
                               {tech}
                             </span>
                           ))}
